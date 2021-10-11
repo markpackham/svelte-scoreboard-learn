@@ -3,7 +3,6 @@
 	import Player from './Player.svelte'
 	import AddPlayer from './AddPlayer.svelte'
 
-
 	let players = [
     {
       name: "John Doe",
@@ -23,8 +22,12 @@
 		const newPlayer = e.detail;
 		players = [...players, newPlayer];
 	}
-</script>
 
+	const removePlayer = (e) =>{
+		players = players.filter(player => player.name !== e.detail);
+	}
+
+</script>
 
 <Navbar />
 <div class="container">
@@ -36,6 +39,7 @@
 	<Player 
 	name = {player.name}
 	points = {player.points}
+	on:removeplayer={removePlayer}
 	/>
 	{/each}
 	{/if}
